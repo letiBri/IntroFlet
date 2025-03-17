@@ -12,6 +12,7 @@ def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo 
 
     myCounter = ft.Text(value="")
     page.controls.append(myCounter)
+    page.update()
 
 
     # 2) creare un campo in cui l'utente può scrivere del testo. -- IN, OUT
@@ -19,15 +20,15 @@ def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo 
     #page.controls.append(txtIn)
     #page.update()
     page.add(txtIn) #con add() facciamo entrambe le operazioni aggiungo alla lista controlli e aggiorno i controlli
-
+    # page.add(txtIn) # equivale a page.controls.append seguito da page.update
 
     # 3) creare dei bottoni. Alla pressione di un bottone, eseguo del codice. -- IN
-    def handleBtnSaluta(e): #e è un oggetto di tipo Evento che contiene tutte le info rilevanti
+    def handleBtnSaluta(e): #e è un oggetto di tipo Evento che contiene tutte le informazioni rilevanti
         txtOut.value = f"Ciao {txtIn.value}"
         page.update()
     btnSaluta = ft.ElevatedButton(text="Saluta", on_click=handleBtnSaluta, bgcolor="green", color="white") #quando viene cliccato chiama quel metodo
     txtOut = ft.Text(value="Come ti chiami?", color="black")#testo affianco al tasto
-    row3 = ft.Row(controls=[btnSaluta, txtOut])
+    row3 = ft.Row(controls=[btnSaluta, txtOut]) #visualizzo i comandi sulla stessa linea
     page.add(row3)
 
 
@@ -49,18 +50,18 @@ def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo 
     txtIn2= ft.TextField(label="Stringa input", color="black")
     btnIn2 = ft.CupertinoButton(text="Aggiungi a Listview", bgcolor="blue", color="black", on_click=handleAddLV)
     row5 = ft.Row(controls=[txtIn2, btnIn2], alignment=ft.MainAxisAlignment.CENTER)
-    lv = ft.ListView()
+    lv = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=False)
     page.add(row5, lv)
 
 
     #del metodo 1)
-    for i in range(100): #è meglio definire tutti i campi graficie e poi aggiornali dopo
+    for i in range(100): #è meglio definire tutti i campi grafici e e poi aggiornali dopo
         myCounter.value = f"Counter: {i}"
         myCounter.color = ft.colors.random()
         page.update() #aggiorno la pagina ogni volta che modifico un singolo controllo
         sleep(1) #dice di aspettare un secondo #metodo lella libreria time
 
 
-ft.app(target=main, view=ft.AppView.FLET_APP) #richiesta di riservare una nuova finetsra e chiama il metodo main per riempire la finestra
+ft.app(target=main, view=ft.AppView.FLET_APP) #richiesta di riservare una nuova finestra e chiama il metodo main per riempire la finestra
 #argomento di default di view che crea una finestra vuota #view=ft.AppView.FLET_APP
 #alternativa #view=ft.AppView.WEB_BROWSER

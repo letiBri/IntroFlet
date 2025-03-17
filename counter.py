@@ -17,8 +17,8 @@ def main(page: ft.Page):
 
     btnAdd = ft.IconButton(ft.Icons.ADD, on_click=handleAdd, bgcolor="green")
     btnMinus = ft.IconButton(ft.Icons.REMOVE, on_click=handleMinus, bgcolor="green")
-    txtCounter = ft.TextField(value=0, width=150, color="green", disabled=True)
-    row = ft.Row(controls=[btnMinus, txtCounter, btnAdd], alignment=ft.MainAxisAlignment.CENTER)
+    txtCounter = ft.TextField(value=0, width=80, color="green", disabled=True)
+    row = ft.Row(controls=[btnMinus, txtCounter, btnAdd], alignment=ft.MainAxisAlignment.CENTER) #definisco anche l'ordine della visualizzazione sulla riga
     page.add(row)
 
 ft.app(target=main)
