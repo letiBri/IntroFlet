@@ -3,6 +3,7 @@ from time import sleep
 import flet as ft
 
 def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo ft.Page
+    page.bgcolor = "white"
 
     # 1) scrivere del testo. -- OUT
     myText = ft.Text(value="Buongiorno!", color="green", size=30) #costruisce un oggetto di tipo Text che è la visualizzazione di una stringa
@@ -25,7 +26,7 @@ def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo 
         txtOut.value = f"Ciao {txtIn.value}"
         page.update()
     btnSaluta = ft.ElevatedButton(text="Saluta", on_click=handleBtnSaluta, bgcolor="green", color="white") #quando viene cliccato chiama quel metodo
-    txtOut = ft.Text(value="Come ti chiami?", color="white")#testo sotto il tasto
+    txtOut = ft.Text(value="Come ti chiami?", color="black")#testo affianco al tasto
     row3 = ft.Row(controls=[btnSaluta, txtOut])
     page.add(row3)
 
@@ -43,10 +44,10 @@ def main(page: ft.Page): #prende come argomento una nuova pagina che è di tipo 
             lv.controls.append(ft.Text("Errore. Aggiungi una stringa valida nel campo", color="red"))
             page.update()
         else:
-            lv.controls.append(ft.Text(txtIn2.value))
+            lv.controls.append(ft.Text(txtIn2.value, color="black"))
             page.update()
-    txtIn2= ft.TextField(label="Stringa input")
-    btnIn2 = ft.CupertinoButton(text="Aggiungi a Listview", bgcolor="blue", color="white", on_click=handleAddLV)
+    txtIn2= ft.TextField(label="Stringa input", color="black")
+    btnIn2 = ft.CupertinoButton(text="Aggiungi a Listview", bgcolor="blue", color="black", on_click=handleAddLV)
     row5 = ft.Row(controls=[txtIn2, btnIn2], alignment=ft.MainAxisAlignment.CENTER)
     lv = ft.ListView()
     page.add(row5, lv)
